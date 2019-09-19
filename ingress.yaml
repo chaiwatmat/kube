@@ -11,4 +11,4 @@ spec:
           - path: /redoc
             backend:
               serviceName: redoc
-              servicePort: 8080
+              servicePort: 30948
