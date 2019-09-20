@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mynginx-ingress
+  annotations:
+    ingress.kubernetes.io/class: nginx
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /mynginx
+            backend:
+              serviceName: mynginx-service
+              servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mynginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mynginx
+  template:
+    metadata:
+      labels:
+        app: mynginx
+    spec:
+      containers:
+        - name: mynginx
+          image: mynginx:latest
+          imagePullPolicy: Never
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mynginx-service
+spec:
+  selector:
+    app: mynginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
