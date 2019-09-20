@@ -12,7 +12,11 @@ spec:
             backend:
               serviceName: meow-svc
               servicePort: 80
-          # - path: /redoc
-          #   backend:
-          #     serviceName: redoc
-          #     servicePort: 8080
+          - path: /redoc
+            backend:
+              serviceName: redoc
+              servicePort: 8076
+          - path: /hello
+            backend:
+              serviceName: hello
+              servicePort: 8077
