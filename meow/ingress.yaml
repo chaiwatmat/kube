@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: meow-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
+    ingress.kubernetes.io/class: nginx
 spec:
   rules:
     - http:
@@ -12,3 +12,7 @@ spec:
             backend:
               serviceName: meow-svc
               servicePort: 80
+          # - path: /redoc
+          #   backend:
+          #     serviceName: redoc
+          #     servicePort: 8080
