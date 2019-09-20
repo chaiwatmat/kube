@@ -12,7 +12,3 @@ spec:
             backend:
               serviceName: meow-svc
               servicePort: 80
-          - path: /hello
-            backend:
-              serviceName: hello
-              servicePort: 8077

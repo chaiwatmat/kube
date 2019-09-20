@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: meow
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: meow
@@ -15,5 +15,9 @@ spec:
       containers:
         - name: meow
           image: gcr.io/kubernetes-e2e-test-images/echoserver:2.1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
           ports:
             - containerPort: 8080
