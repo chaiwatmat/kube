@@ -1,36 +1,51 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: mynginx-ingress
+  name: redoc-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # kubernetes.io/ingress.class: "nginx"
+    # nginx.ingress.kubernetes.io/enable-cors: "true"
+  labels:
+    app: redoc
+  # namespace: myapp
 spec:
+  type: NodePort
   rules:
     - http:
         paths:
-          - path: /mynginx
+          - path: /
             backend:
-              serviceName: mynginx-service
+              serviceName: redoc-service
               servicePort: 80
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: mynginx
+  name: redoc
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: mynginx
+      app: redoc
   template:
     metadata:
       labels:
-        app: mynginx
+        app: redoc
     spec:
       containers:
-        - name: mynginx
-          image: mynginx:1.5
+        - name: redoc
+          image: myredoc:1.0.1
           imagePullPolicy: Never
+          ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+          - name: https
+            containerPort: 443
+            protocol: TCP
           resources:
             requests:
               cpu: 100m
@@ -42,10 +57,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mynginx-service
+  name: redoc-service
 spec:
   selector:
-    app: mynginx
+    app: redoc
   ports:
     - protocol: TCP
       port: 80
