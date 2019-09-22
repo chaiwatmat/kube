@@ -1,50 +1,38 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: redoc-ingress
+  name: swagger-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    kubernetes.io/ingress.class: "nginx"
-    # nginx.ingress.kubernetes.io/enable-cors: "true"
   labels:
-    app: redoc
-  # namespace: myapp
+    app: swagger
 spec:
-  # type: NodePort
   rules:
     - http:
         paths:
-          - path: /redoc
+          - path: /
             backend:
-              serviceName: redoc-service
+              serviceName: swagger-service
               servicePort: 80
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: redoc
+  name: swagger
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redoc
+      app: swagger
   template:
     metadata:
       labels:
-        app: redoc
+        app: swagger
     spec:
       containers:
-        - name: redoc
-          image: myredoc:1.0.1
+        - name: swagger
+          image: swaggerapi/swagger-ui
           imagePullPolicy: Never
-          # ports:
-          # - name: http
-          #   containerPort: 80
-          #   protocol: TCP
-          # - name: https
-          #   containerPort: 443
-          #   protocol: TCP
           resources:
             requests:
               cpu: 100m
@@ -56,10 +44,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: redoc-service
+  name: swagger-service
 spec:
   selector:
-    app: redoc
+    app: swagger
   ports:
     - protocol: TCP
       port: 80

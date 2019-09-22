@@ -13,3 +13,7 @@ kubectl delete deploy mynginx & kubectl delete service mynginx-service & kubectl
 ```sh
 kubectl delete deploy redoc & kubectl delete service redoc-service & kubectl delete ingress redoc-ingress
 ```
+
+```sh
+kubectl delete deploy swagger & kubectl delete service swagger-service & kubectl delete ingress swagger-ingress
+```
