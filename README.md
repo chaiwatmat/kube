@@ -3,6 +3,10 @@
 ## Command
 
 ```sh
+kubectl delete deploy dashboard & kubectl delete service dashboard-service & kubectl delete ingress dashboard-ingress
+```
+
+```sh
 kubectl delete deploy meow & kubectl delete service meow-service & kubectl delete ingress meow-ingress
 ```
 
