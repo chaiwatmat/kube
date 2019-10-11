@@ -13,6 +13,7 @@ spec:
   rules:
     - http:
         paths:
+          # change to '/' will works
           - path: /
             backend:
               serviceName: redoc-service
