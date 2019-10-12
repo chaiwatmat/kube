@@ -21,3 +21,9 @@ kubectl delete deploy redoc & kubectl delete service redoc-service & kubectl del
 ```sh
 kubectl delete deploy swagger & kubectl delete service swagger-service & kubectl delete ingress swagger-ingress
 ```
+
+## delete command
+
+```sh
+kubectl delete -f dashboard/
+```
