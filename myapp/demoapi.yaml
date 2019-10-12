@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoapi-service
+spec:
+  selector:
+    app: demoapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      name: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demoapi
+  template:
+    metadata:
+      labels:
+        app: demoapi
+    spec:
+      containers:
+        - name: demoapi
+          image: demoapi:0.0.8
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8080
+          resources:
+            requests:
+              cpu: 300m
+              memory: 300Mi
+            limits:
+              cpu: 300m
+              memory: 300Mi
