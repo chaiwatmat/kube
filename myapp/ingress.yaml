@@ -32,7 +32,3 @@ spec:
             backend:
               serviceName: swagger-service
               servicePort: 80
-          # - path: /api/hello
-          #   backend:
-          #     serviceName: demoapi-service
-          #     servicePort: 80
