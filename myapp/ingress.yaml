@@ -1,0 +1,88 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    app: dashboard
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: dashboard-service
+              servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: meow-ingress
+  annotations:
+    ingress.kubernetes.io/class: nginx
+  namespace: myapp
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /meow
+            backend:
+              serviceName: meow-service
+              servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mynginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  namespace: myapp
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /mynginx
+            backend:
+              serviceName: mynginx-service
+              servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: redoc-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  #   nginx.ingress.kubernetes.io/enable-cors: "true"
+    # kubernetes.io/ingress.class: "nginx"
+  labels:
+    app: redoc
+  # namespace: myapp
+spec:
+  rules:
+    - http:
+        paths:
+          # change to '/' will works
+          - path: /
+            backend:
+              serviceName: redoc-service
+              servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: swagger-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: "nginx"
+  labels:
+    app: swagger
+  namespace: myapp
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /swagger
+            backend:
+              serviceName: swagger-service
+              servicePort: 80

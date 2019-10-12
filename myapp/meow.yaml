@@ -1,24 +1,7 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: meow-ingress
-  annotations:
-    ingress.kubernetes.io/class: nginx
-  namespace: myapp
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /meow
-            backend:
-              serviceName: meow-service
-              servicePort: 80
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: meow
-  # namespace: myapp
 spec:
   replicas: 1
   selector:
