@@ -1,29 +1,13 @@
 # RUN
 
-## Command
+## apply ommand
 
 ```sh
-kubectl delete deploy dashboard & kubectl delete service dashboard-service & kubectl delete ingress dashboard-ingress
-```
-
-```sh
-kubectl delete deploy meow & kubectl delete service meow-service & kubectl delete ingress meow-ingress
-```
-
-```sh
-kubectl delete deploy mynginx & kubectl delete service mynginx-service & kubectl delete ingress mynginx-ingress
-```
-
-```sh
-kubectl delete deploy redoc & kubectl delete service redoc-service & kubectl delete ingress redoc-ingress
-```
-
-```sh
-kubectl delete deploy swagger & kubectl delete service swagger-service & kubectl delete ingress swagger-ingress
+kubectl apply -f myapp/
 ```
 
 ## delete command
 
 ```sh
-kubectl delete -f dashboard/
+kubectl delete -f myapp/
 ```
