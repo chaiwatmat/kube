@@ -1,29 +1,24 @@
 # RUN
 
-## Command
+## apply ommand
 
 ```sh
-kubectl delete deploy dashboard & kubectl delete service dashboard-service & kubectl delete ingress dashboard-ingress
-```
-
-```sh
-kubectl delete deploy meow & kubectl delete service meow-service & kubectl delete ingress meow-ingress
-```
-
-```sh
-kubectl delete deploy mynginx & kubectl delete service mynginx-service & kubectl delete ingress mynginx-ingress
-```
-
-```sh
-kubectl delete deploy redoc & kubectl delete service redoc-service & kubectl delete ingress redoc-ingress
-```
-
-```sh
-kubectl delete deploy swagger & kubectl delete service swagger-service & kubectl delete ingress swagger-ingress
+kubectl apply -f myapp/
 ```
 
 ## delete command
 
 ```sh
-kubectl delete -f dashboard/
+kubectl delete -f myapp/
 ```
+
+## commit message convention
+
+- `feat:` A new feature
+- `fix:` A bug fix
+- `docs:` Documentation only changes
+- `style:` Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- `refactor:` A code change that neither fixes a bug nor adds a feature
+- `perf:` A code change that improves performance
+- `test:` Adding missing or correcting existing tests
+- `chore:` Changes to the build process or auxiliary tools and libraries such as documentation generation
