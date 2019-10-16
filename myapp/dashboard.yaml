@@ -6,10 +6,15 @@ spec:
   selector:
     app: dashboard
   ports:
-    - protocol: TCP
+    # - protocol: TCP
+    #   port: 80
+    #   targetPort: 3000
+    #   name: http
+    - nodePort: 31066
       port: 80
+      protocol: TCP
       targetPort: 3000
-      name: http
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
